@@ -63,6 +63,7 @@ function _Request:new(isPromise, command, onDataLoaded, onError, timeout, id)
 
     function obj:getData()
         --Try to read from webdb
+        print("getData", "__temp"..self.id)
         return love.filesystem.read("__temp"..self.id)
     end
 
@@ -151,8 +152,8 @@ JS.setDefaultErrorFunction(function(id, error)
 end)
 
 
-JS.callJS(JS.stringFunc(
-    [[
-        __getWebDB("%s");
-    ]]
-"__LuaJSDB")
+JS.callJS(
+    JS.stringFunc(
+        "__getWebDB('/home/web_user/love');"
+    )
+)
